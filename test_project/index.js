@@ -3,7 +3,7 @@ import cors from "cors";
 import "./loadEnvironment.js";
 import "express-async-errors";
 import user from "./controllers/user.controller.mjs";
-import item from "./controllers/item.controller.mjs";
+import policy from "./controllers/policy.controller.mjs";
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Load  routes
 app.use("/user", user);
-app.use("/item", item)
+app.use("/policy", policy)
 
 // Global error handling
 app.use((err, _req, res, next) => {

@@ -28,7 +28,7 @@ mongoose.connection.dropCollection('users', function (err) {
 
 
 /* drop policy collections */
-mongoose.connection.dropCollection('policy', function (err) {
+mongoose.connection.dropCollection('policies', function (err) {
     if (err) {
         if (err.code === 26) console.log('-- policy collection does not exists');
         else throw err;
