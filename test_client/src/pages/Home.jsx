@@ -8,10 +8,9 @@ function Home() {
     return (
         <div>
             <Dashboard/>
-             <ProSidebarProvider>
              
-            <Navbar/>
-        </ProSidebarProvider>
+             
+            
         </div>
     );
 
