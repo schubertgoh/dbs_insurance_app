@@ -7,6 +7,7 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import './navbar.css'
 import LogoutIcon from "@mui/icons-material/Logout";
+import Dashboard from "../pages/dashboard"
 
 function Navbar() {
   const { collapseSidebar } = useProSidebar();
@@ -37,6 +38,7 @@ function Navbar() {
       <main>
         <h1>My Dashboard</h1>
       <img src='../../assets/graph.png' alt="graph"/>
+      <Dashboard/>
       </main>
     </div>
     </div>
