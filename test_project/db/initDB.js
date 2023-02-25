@@ -1,5 +1,6 @@
 import User from '../models/user.model.mjs'
-import Item from '../models/item.model.mjs'
+import Policy from '../models/policy.model.mjs'
+import Claims from '../models/claims.model.mjs'
 import mongoose from 'mongoose';
 import "../loadEnvironment.js";
 
@@ -26,22 +27,37 @@ mongoose.connection.dropCollection('users', function (err) {
 });
 
 
-/* drop item collections */
-mongoose.connection.dropCollection('items', function (err) {
+/* drop policy collections */
+mongoose.connection.dropCollection('policy', function (err) {
     if (err) {
-        if (err.code === 26) console.log('-- items collection does not exists');
+        if (err.code === 26) console.log('-- policy collection does not exists');
         else throw err;
     }
-    else console.log("-- items collection dropped");
+    else console.log("-- policy collection dropped");
 
 
-    Item.create(itemData, function (err, items) {
+    Policy.create(policyData, function (err, items) {
         if (err) throw err;
-        console.log(items + '\n-- items inserted successfully');
+        console.log(items + '\n-- policy inserted successfully');
     });
     /* insert post */
 });// END drop collections
 
+/* drop claims collections */
+mongoose.connection.dropCollection('claims', function (err) {
+    /* show messages */
+    if (err) {
+        if (err.code === 26) console.log('-- claims collection does not exists');
+        else throw err;
+    }
+    else console.log("-- claims collection dropped");
+
+    /* insert data of users */
+    Claims.create(claimsData, function (err, users) {
+        if (err) throw err;
+        console.log(users + '\n-- claims inserted successfully');
+    });
+});
 /* data to be inserted */
 const userData = [
     {
@@ -81,7 +97,7 @@ const userData = [
        }
 ];
 
-const insurancePolicyData = [
+const policyData = [
     {
         "InsuranceID": 1005,
         "EmployeeID": 58001002,
@@ -204,7 +220,7 @@ const insurancePolicyData = [
        }
 ];
 
-const insuranceClaimData = [
+const claimsData = [
     {
      "ClaimID": 2010,
      "InsuranceID": 1009,
