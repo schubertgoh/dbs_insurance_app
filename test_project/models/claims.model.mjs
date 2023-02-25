@@ -24,7 +24,8 @@ const claimsSchema = new mongoose.Schema({
     FollowUp:           Boolean,
     PreviousClaimID:    Number,
     Status:             String,
-    LastEditedClaim:    String
+    LastEditedClaimDate:    String,
+    EmployeeID:         Number
 });
 
 const Claims = mongoose.model('Claims', claimsSchema)
