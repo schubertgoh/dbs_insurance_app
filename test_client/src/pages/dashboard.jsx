@@ -1,3 +1,9 @@
+
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Stack from '@mui/material/Stack';
+
+
 import React, { useMemo } from 'react';
 import MaterialReactTable from 'material-react-table';
 import retData from '../../../Main Challenge Dataset/InsuranceClaims.json'
@@ -5,9 +11,8 @@ import { useEffect, useState } from 'react';
 
 
 
-//nested data is ok, see accessorKeys in ColumnDef below
 
-function dashboard (){
+//nested data is ok, see accessorKeys in ColumnDef below
 
     const [cleanData, setState] = useState([]);
     useEffect(() => {
@@ -18,60 +23,81 @@ function dashboard (){
                 console.log(curr);
                 cleanData.push(retData[i]);
             }
+            console.log(cleanData)
         }
     }, [retData])
-    console.log(cleanData)
 
     const data = [
-        {
-            name: {
-            firstName: 'John',
-            lastName: 'Doe',
-            },
-            claimId: '566 Brakus Inlet',
-            Status: 'South Linda',
-            state: 'West Virginia',
+            
+    {
+        name: {
+        firstName: 'Irene',
+        lastName: 'Lee',
         },
-        {
-            name: {
-            firstName: 'Jane',
-            lastName: 'Doe',
-            },
-            claimId: '566 Brakus Inlet',
-            Status: 'South Linda',
-            state: 'West Virginia',
+        claimId: '4372',
+        status: "Pending",
+        actions: <Stack direction="row" spacing={1}>
+                <Button classname="view" variant="contained" size="small" color="success" >View</Button >
+              <Button  classname="edit" variant="contained" size="small">Edit </Button>
+             <Button  classname="delete" variant="contained" startIcon={<DeleteIcon />} size="small"  color="error">Delete</Button></Stack>,
+    },
+    {
+        name: {
+        firstName: 'Jane',
+        lastName: 'Tan',
         },
-        {
-            name: {
-            firstName: 'Joe',
-            lastName: 'Doe',
-            },
-            claimId: '566 Brakus Inlet',
-            Status: 'South Linda',
-            state: 'West Virginia',
+        claimId: '2634',
+        status: "Pending",
+        actions: <Stack direction="row" spacing={1}>
+        <Button classname="view" variant="contained" size="small" color="success" >View</Button >
+       <Button  classname="edit" variant="contained" size="small">Edit </Button>
+        <Button  classname="delete" variant="contained" startIcon={<DeleteIcon />} size="small"  color="error">Delete</Button></Stack>,
+    },
+    {
+        name: {
+        firstName: 'Joe',
+        lastName: 'Lim',
         },
-        {
-            name: {
-            firstName: 'Kevin',
-            lastName: 'Vandy',
-            },
-            claimId: '722 Emie Stream',
-            Status: 'Lincoln',
-            actions: <button type="view">View</button>,
-           
+        claimId: '4634',
+        status: "Pending",
+        actions: <Stack direction="row" spacing={1}>
+       <Button classname="view" variant="contained" size="small" color="success" >View</Button >
+       <Button  classname="edit" variant="contained" size="small">Edit </Button>
+        <Button  classname="delete" variant="contained" startIcon={<DeleteIcon />} size="small"  color="error">Delete</Button></Stack>,
+    },
+    {
+        name: {
+        firstName: 'Kevin',
+        lastName: 'Loh',
         },
-        {
-            name: {
-            firstName: 'Joshua',
-            lastName: 'Rolluffs',
-            },
-            claimId: '32188 Larkin Turnpike',
-            Status: 'Charleston',
-            state: 'South Carolina',
+        claimId: '4383',
+        status: "Pending",
+        actions: <Stack direction="row" spacing={1}>
+        <Button classname="view" variant="contained" size="small" color="success" >View</Button >
+       <Button  classname="edit" variant="contained" size="small">Edit </Button>
+        <Button  classname="delete" variant="contained" startIcon={<DeleteIcon />} size="small"  color="error">Delete</Button></Stack>,
+    },
+    {
+        name: {
+        firstName: 'Joshua',
+        lastName: 'Poh',
         },
-        ];
+        claimId: '4748',
+        status: "Pending",
+        actions:<Stack direction="row" spacing={1}>
+        <Button classname="view" variant="contained" size="small" color="success" >View</Button >
+       <Button  classname="edit" variant="contained" size="small">Edit </Button>
+        <Button  classname="delete" variant="contained" startIcon={<DeleteIcon />} size="small"  color="error">Delete</Button></Stack>,
+    },
+    ];
+
+
+    const dashboard = () => {
+       
+
     //should be memoized or stable
     const columns = useMemo(
+        
         () => [
         {
             accessorKey: 'FirstName', //access nested data with dot notation
@@ -99,9 +125,14 @@ function dashboard (){
         ],
         [],
     );
-    
-  return <MaterialReactTable columns={columns} data={retData} />;
+
+  
+  
+
+  return <MaterialReactTable  classname = "table"  columns={columns} data={data} />;
   
 };
 
+
 export default dashboard;
+
