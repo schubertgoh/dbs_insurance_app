@@ -4,6 +4,8 @@ import "./loadEnvironment.js";
 import "express-async-errors";
 import user from "./controllers/user.controller.mjs";
 import policy from "./controllers/policy.controller.mjs";
+import claims from "./controllers/claims.controller.mjs";
+
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -14,6 +16,7 @@ app.use(express.json());
 // Load  routes
 app.use("/user", user);
 app.use("/policy", policy)
+app.use("/claims", claims)
 
 // Global error handling
 app.use((err, _req, res, next) => {
