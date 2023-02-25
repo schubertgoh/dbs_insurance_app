@@ -3,7 +3,8 @@ const Add = () => {
 
   return (
     <div>
-      <form>
+      <h1 className="login">Add Claim</h1>
+      <form className="form">
       <fieldset>
          <label>
            <p>Expense Date</p>

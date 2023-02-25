@@ -24,6 +24,7 @@ function Login() {
     return (
         <div className="Login">
             <form className="form">
+                <h1>MyInsurance @ DBS</h1>
                 <h2 className="login">Login</h2>
                 <CustomInput
                     labelText="Email"
