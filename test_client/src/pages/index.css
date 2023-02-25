@@ -16,6 +16,10 @@ body {
   color: darkslateblue;
 }
 
+.login-box {
+  margin-top: 100px;
+}
+
 .form {
   max-width: 330px;
   margin: 0 auto;
