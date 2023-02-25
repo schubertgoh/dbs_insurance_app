@@ -63,7 +63,7 @@ router.put("/update/:claimID", async (req, res) => {
                 FollowUp:           req.body.FollowUp,
                 PreviousClaimID:    req.body.PreviousClaimID,
                 Status:             req.body.Status,
-                LastEditedClaim:    req.body.LastEditedClaim,
+                LastEditedClaim:    new Date(),
                 EmployeeID:         req.body.EmployeeID
             }
         }
