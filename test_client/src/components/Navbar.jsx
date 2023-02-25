@@ -26,7 +26,6 @@ function Navbar() {
             {" "}
             <h2>Menu</h2>
           </MenuItem>
-
           <MenuItem href="/home" icon={<HomeOutlinedIcon />}>Home</MenuItem>
           <MenuItem href="/user" icon={<PeopleOutlinedIcon />}>Users</MenuItem>
           <MenuItem href="/item" icon={<ReceiptOutlinedIcon />}>Items</MenuItem>
@@ -35,6 +34,10 @@ function Navbar() {
           <MenuItem href="/" icon={<LogoutIcon/>}>Logout</MenuItem>
         </Menu>
       </Sidebar>
+      <main>
+        <h1>My Dashboard</h1>
+      <img src='../../assets/graph.png' alt="graph"/>
+      </main>
     </div>
     </div>
   );
