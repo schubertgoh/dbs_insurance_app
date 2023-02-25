@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Users from "./pages/Users";
 import Items from "./pages/Items";
+import Add from "./pages/Add";
 
 
 export default class App extends Component {
@@ -18,6 +19,7 @@ export default class App extends Component {
           <Route path="/home" element={<Home />} />
           <Route path="/user" element={<Users />} />
           <Route path="/item" element={<Items/>} />
+          <Route path="/Add" element={<Add/>} />
         </Routes>
       </div>
       </Router>

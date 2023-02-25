@@ -14,17 +14,18 @@ export default Item
 */
 
 const claimsSchema = new mongoose.Schema({
-    claimID:            Number,
-    insuranceID:        Number,
-    firstName:          String,
-    lastName:           String,
-    expenseDate:        String,
-    amount:             Decimal128,
-    purpose:            String,
-    followUp:           Boolean,
-    previousClaimID:    Number,
-    status:             String,
-    lastEditedClaim:    String
+    ClaimID:            Number,
+    InsuranceID:        Number,
+    FirstName:          String,
+    LastName:           String,
+    ExpenseDate:        String,
+    Amount:             Number,
+    Purpose:            String,
+    FollowUp:           Boolean,
+    PreviousClaimID:    Number,
+    Status:             String,
+    LastEditedClaimDate:    String,
+    EmployeeID:         Number
 });
 
 const Claims = mongoose.model('Claims', claimsSchema)

@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
-
+/*
 router.post("/", async (req, res) => {
     let collection = await db.collection("items");
     let newDocument = req.body;
@@ -12,21 +12,26 @@ router.post("/", async (req, res) => {
     let result = await collection.insertOne(newDocument);
     res.send(result).status(204);
 });
+*/
 
-// Get all items
-router.get("/", async (req, res) => {
-    let collection = await db.collection("items");
-    let results = await collection.find({})
+// Get all policy of a employee
+router.get("/:employeeID", async (req, res) => {
+    let collection = await db.collection("policies");
+    let results = await collection.find({"EmployeeID":parseInt(req.params.employeeID)})
         .toArray();
 
-    res.send(results).status(200);
+    if (!results) res.send("Not found").status(404);
+        else res.send(results).status(200);
 });
 
-// Get a single post
-router.get("/get/:id", async (req, res) => {
+// Get a specific policy of a employee
+router.get("/:employeeID/:policyID", async (req, res) => {
     try {
-        let collection = await db.collection("items");
-        let query = { _id: new ObjectId(req.params.id) };
+        let collection = await db.collection("policies");
+        let query = {  
+                        "EmployeeID": parseInt(req.params.employeeID), 
+                        "InsuranceID": parseInt(req.params.policyID)
+                    };
         let result = await collection.findOne(query);
         if (!result) res.send("Not found").status(404);
         else res.send(result).status(200);
@@ -36,6 +41,7 @@ router.get("/get/:id", async (req, res) => {
     }
 });
 
+/*
 router.put("/update/:id", async (req, res) => {
     try {
         const query = { _id: new ObjectId(req.params.id) };
@@ -71,5 +77,6 @@ router.delete("/delete/:id", async (req, res) => {
         res.status(400).send("An error occured! Check logs!")
     }
 });
+*/
 
 export default router;

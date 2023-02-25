@@ -1,5 +1,6 @@
 import User from '../models/user.model.mjs'
-import Item from '../models/item.model.mjs'
+import Policy from '../models/policy.model.mjs'
+import Claims from '../models/claims.model.mjs'
 import mongoose from 'mongoose';
 import "../loadEnvironment.js";
 
@@ -26,22 +27,37 @@ mongoose.connection.dropCollection('users', function (err) {
 });
 
 
-/* drop item collections */
-mongoose.connection.dropCollection('items', function (err) {
+/* drop policy collections */
+mongoose.connection.dropCollection('policies', function (err) {
     if (err) {
-        if (err.code === 26) console.log('-- items collection does not exists');
+        if (err.code === 26) console.log('-- policy collection does not exists');
         else throw err;
     }
-    else console.log("-- items collection dropped");
+    else console.log("-- policy collection dropped");
 
 
-    Item.create(itemData, function (err, items) {
+    Policy.create(policyData, function (err, items) {
         if (err) throw err;
-        console.log(items + '\n-- items inserted successfully');
+        console.log(items + '\n-- policy inserted successfully');
     });
     /* insert post */
 });// END drop collections
 
+/* drop claims collections */
+mongoose.connection.dropCollection('claims', function (err) {
+    /* show messages */
+    if (err) {
+        if (err.code === 26) console.log('-- claims collection does not exists');
+        else throw err;
+    }
+    else console.log("-- claims collection dropped");
+
+    /* insert data of users */
+    Claims.create(claimsData, function (err, users) {
+        if (err) throw err;
+        console.log(users + '\n-- claims inserted successfully');
+    });
+});
 /* data to be inserted */
 const userData = [
     {
@@ -81,11 +97,11 @@ const userData = [
        }
 ];
 
-const insurancePolicyData = [
+const policyData = [
     {
         "InsuranceID": 1005,
         "EmployeeID": 58001002,
-        "Insurance Type": "Personal Accident",
+        "InsuranceType": "Personal Accident",
         "PolicyStartDate": "2022-03-31T00:00:00+08:00",
         "PolicyTerm": "12 months",
         "PolicyEndDate": "2023-03-31T00:00:00+08:00",
@@ -95,7 +111,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1006,
         "EmployeeID": 58001002,
-        "Insurance Type": "Housing",
+        "InsuranceType": "Housing",
         "PolicyStartDate": "2022-03-31T00:00:00+08:00",
         "PolicyTerm": "24 months",
         "PolicyEndDate": "2024-03-31T00:00:00+08:00",
@@ -105,7 +121,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1007,
         "EmployeeID": 58001002,
-        "Insurance Type": "Car",
+        "InsuranceType": "Car",
         "PolicyStartDate": "2022-03-31T00:00:00+08:00",
         "PolicyTerm": "24 months",
         "PolicyEndDate": "2024-03-31T00:00:00+08:00",
@@ -115,7 +131,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1008,
         "EmployeeID": 58001003,
-        "Insurance Type": "Personal Accident",
+        "InsuranceType": "Personal Accident",
         "PolicyStartDate": "2022-05-31T00:00:00+08:00",
         "PolicyTerm": "3 months",
         "PolicyEndDate": "2022-08-31T00:00:00+08:00",
@@ -125,7 +141,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1009,
         "EmployeeID": 58001004,
-        "Insurance Type": "Personal Accident",
+        "InsuranceType": "Personal Accident",
         "PolicyStartDate": "2022-05-31T00:00:00+08:00",
         "PolicyTerm": "12 months",
         "PolicyEndDate": "2023-05-31T00:00:00+08:00",
@@ -135,7 +151,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1010,
         "EmployeeID": 58001004,
-        "Insurance Type": "Housing",
+        "InsuranceType": "Housing",
         "PolicyStartDate": "2022-05-31T00:00:00+08:00",
         "PolicyTerm": "24 months",
         "PolicyEndDate": "2024-05-31T00:00:00+08:00",
@@ -145,7 +161,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1011,
         "EmployeeID": 58001003,
-        "Insurance Type": "Car",
+        "InsuranceType": "Car",
         "PolicyStartDate": "2022-07-31T00:00:00+08:00",
         "PolicyTerm": "12 months",
         "PolicyEndDate": "2023-07-31T00:00:00+08:00",
@@ -155,7 +171,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1012,
         "EmployeeID": 58001004,
-        "Insurance Type": "Car",
+        "InsuranceType": "Car",
         "PolicyStartDate": "2022-09-30T00:00:00+08:00",
         "PolicyTerm": "24 months",
         "PolicyEndDate": "2024-09-30T00:00:00+08:00",
@@ -165,7 +181,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1013,
         "EmployeeID": 58001001,
-        "Insurance Type": "Housing",
+        "InsuranceType": "Housing",
         "PolicyStartDate": "2022-11-30T00:00:00+08:00",
         "PolicyTerm": "24 months",
         "PolicyEndDate": "2024-11-30T00:00:00+08:00",
@@ -175,7 +191,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1014,
         "EmployeeID": 58001005,
-        "Insurance Type": "Travel",
+        "InsuranceType": "Travel",
         "PolicyStartDate": "2023-01-31T00:00:00+08:00",
         "PolicyTerm": "1 month",
         "PolicyEndDate": "2023-02-28T00:00:00+08:00",
@@ -185,7 +201,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1015,
         "EmployeeID": 58001005,
-        "Insurance Type": "Housing",
+        "InsuranceType": "Housing",
         "PolicyStartDate": "2023-01-31T00:00:00+08:00",
         "PolicyTerm": "24 months",
         "PolicyEndDate": "2025-01-31T00:00:00+08:00",
@@ -195,7 +211,7 @@ const insurancePolicyData = [
        {
         "InsuranceID": 1016,
         "EmployeeID": 58001001,
-        "Insurance Type": "Travel",
+        "InsuranceType": "Travel",
         "PolicyStartDate": "2023-01-31T00:00:00+08:00",
         "PolicyTerm": "1 month",
         "PolicyEndDate": "2023-02-28T00:00:00+08:00",
@@ -204,7 +220,7 @@ const insurancePolicyData = [
        }
 ];
 
-const insuranceClaimData = [
+const claimsData = [
     {
      "ClaimID": 2010,
      "InsuranceID": 1009,
