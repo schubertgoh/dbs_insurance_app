@@ -3,9 +3,24 @@ import MaterialReactTable from 'material-react-table';
 import retData from '../../../Main Challenge Dataset/InsuranceClaims.json'
 import { useEffect, useState } from 'react';
 
+
+
 //nested data is ok, see accessorKeys in ColumnDef below
 
 function dashboard (){
+
+    const [cleanData, setState] = useState([]);
+    useEffect(() => {
+        if (cleanData.length == 0){
+            for(let i = 0; i < retData.length; i++){
+                let curr = retData[i];
+                curr['actions'] = <button type="view" >View</button>;
+                console.log(curr);
+                cleanData.push(retData[i]);
+            }
+        }
+    }, [retData])
+    console.log(cleanData)
 
     const data = [
         {
@@ -77,8 +92,9 @@ function dashboard (){
         },
         {
             accessorKey: 'actions',
-            header: 'Actions',
+            header: 'View',
         },
+        
         
         ],
         [],
