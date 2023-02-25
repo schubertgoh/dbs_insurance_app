@@ -4,7 +4,7 @@
 }
 
 body {
-  background: mediumslateblue;
+  background: white;
 }
 
 .Login {
@@ -21,7 +21,6 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background: white;
   padding: 30px;
   margin-top: 50px;
 }
@@ -35,8 +34,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  color: red ;
+  text-align: center;
+  margin-left: auto;
+  color:black ;
 }
 
 .btn {
@@ -51,4 +51,17 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;  
+}
+
+.logo {
+  height: 60px; 
+  width: 200px;
+  padding-top: 50px;
 }

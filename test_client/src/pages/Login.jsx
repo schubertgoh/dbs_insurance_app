@@ -23,7 +23,9 @@ function Login() {
 
     return (
         <div className="Login">
+            <img className="logo" src = "/src/assets/dbslogo.png"/>
             <form className="form">
+                <h1>MyInsurance @ DBS</h1>
                 <h2 className="login">Login</h2>
                 <CustomInput
                     labelText="Email"
