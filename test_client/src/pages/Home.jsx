@@ -2,9 +2,9 @@ import { Button } from '@mui/material';
 import React from 'react';
 import { ProSidebarProvider } from "react-pro-sidebar";
 import Navbar from '../components/Navbar';
-import Dashboard from './dashboard';
 import PopUpButton from './PopUpButton';
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
 function Home() {
     const navigate = useNavigate();
@@ -24,8 +24,6 @@ function Home() {
 
     return (
         <div>
-
-            <Dashboard/>
 
             <PopUpButton claim = {claim}/>
         <ProSidebarProvider>
