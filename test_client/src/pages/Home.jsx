@@ -4,7 +4,13 @@ import React from 'react';
 import { ProSidebarProvider } from "react-pro-sidebar";
 import Navbar from '../components/Navbar';
 import Dashboard from './dashboard';
+<<<<<<< HEAD
 import './index.css'
+=======
+import PopUpButton from './PopUpButton';
+import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+>>>>>>> 3313761 (Changes to Add and Edit page)
 
 function Home() {
     const theme = createTheme({

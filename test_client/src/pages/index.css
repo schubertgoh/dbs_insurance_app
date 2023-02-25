@@ -8,8 +8,14 @@ body {
 }
 
 .Login {
+  padding: 50px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-align: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  width: 100%;
+  heigth: 100%;
 }
 
 .login {
@@ -26,7 +32,6 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 30px;
   margin-top: 50px;
 }
 
@@ -35,13 +40,10 @@ body {
   background-color: darkslateblue
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+h1 {
   text-align: center;
-  margin-left: auto;
   color:black ;
+  padding: 50px;
 }
 
 .btn {
@@ -76,3 +78,14 @@ body {
   display:inline-block;
 }
 
+
+.survey {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  box-sizing: border-box;
+  height: 50px;
+  
+  border: 1px solid #E6E6E6;
+  border-radius: 10px;
+
+}

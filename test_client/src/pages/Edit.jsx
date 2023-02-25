@@ -9,7 +9,7 @@ const Add = () => {
   return (
   <div className="Login" style={{backgroundImage: "url(/src/assets/dbslogo3.png)"}}>
     
-      <h1>Add Claim</h1>
+      <h1>Edit Claim</h1>
       <h3>Expense Date</h3>
       <TextField id="filled-basic" variant="outlined" className="login" type="date"  />
       <p></p>
