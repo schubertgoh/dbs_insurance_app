@@ -1,19 +1,26 @@
 import express from "express";
 import db from "../db/connect.js";
-import { ObjectId } from "mongodb";
+import jwt from "jsonwebtoken"
+
 
 const router = express.Router();
 
-
-router.post("/", async (req, res) => {
-    let collection = await db.collection("users");
-    let newDocument = req.body;
-    newDocument.date = new Date();
-    let result = await collection.insertOne(newDocument);
-    res.send(result).status(204);
+// Get a single post
+router.get("/:id", async (req, res) => {
+    try {
+        let collection = await db.collection("users");
+        let result = await collection.findOne({
+            EmployeeID
+                : parseInt(req.params.id)
+        });
+        if (!result) res.send(`User with id: ${req.params.id} Not found`).status(404);
+        else res.send(result).status(200);
+    } catch (e) {
+        console.log(e)
+        res.status(400).send("An error occured! Check logs!")
+    }
 });
 
-// Get all users
 router.get("/", async (req, res) => {
     let collection = await db.collection("users");
     let results = await collection.find({})
@@ -22,78 +29,58 @@ router.get("/", async (req, res) => {
     res.send(results).status(200);
 });
 
-// Get a single post
-router.get("/get/:id", async (req, res) => {
+router.post("/login", async function (req, res) {
     try {
+        // check if the user exists
         let collection = await db.collection("users");
-        let query = { _id: new ObjectId(req.params.id) };
-        let result = await collection.findOne(query);
-        if (!result) res.send("Not found").status(404);
-        else res.send(result).status(200);
-    } catch (e) {
-        console.log(e)
-        res.status(400).send("An error occured! Check logs!")
-    }
-});
+        let query = {
+            EmployeeID
+                : parseInt(req.body.id)
+        };
+        let user = await collection.findOne(query);
+        console.log("User " + user.FirstName + user.LastName)
+        //if user email is found, compare password with bcrypt
+        if (user) {
+            const isSame = await user.Password == req.body.password;
+            console.log("passwordm ", isSame)
 
-router.put("/update/:id", async (req, res) => {
-    try {
-        const query = { _id: new ObjectId(req.params.id) };
-        const updates = {
-            "$set": {
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: req.body.email,
-                password: req.body.password
+            //if password is the same
+            //generate token with the user's id and the secretKey in the env file
+
+            if (isSame) {
+                let token = jwt.sign({ id: user.id }, process.env.secretKey, {
+                    expiresIn: 1 * 24 * 60 * 60 * 1000,
+                });
+
+                //if password matches wit the one in the database
+                //go ahead and generate a cookie for the user
+                res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
+                console.log("user", JSON.stringify(user, null, 2));
+                console.log(token);
+                //send user data
+                return res.json({
+                    status: 201,
+                    data: user,
+                    token: token
+                })
+            } else {
+                return res.json({
+                    status: 401,
+                    errorMessgae: "Authentication failed",
+                });
             }
+        } else {
+            return res.json({
+                status: 404,
+                errorMessgae: "No Record found!",
+            });
         }
-
-        let collection = await db.collection("users");
-        let result = await collection.updateOne(query, updates);
-
-        res.send(result).status(200);
-    } catch (e) {
-        console.log(e)
-        res.status(400).send("An error occured! Check logs!")
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ error });
     }
 });
 
-router.put("/activate/:id", async (req, res) => {
-    try {
-        const query = { _id: new ObjectId(req.params.id) };
-        const updates = {
-            $set: {
-                active: true
-            }
-        };
 
-        let collection = await db.collection("users");
-        let result = await collection.updateOne(query, updates);
-        let response = `User with id:${req.params.id} was activated!`
-        res.send(response).status(200);
-    } catch (e) {
-        console.log(e)
-        res.status(400).send("An error occured! Check logs!")
-    }
-});
-
-router.put("/deactivate/:id", async (req, res) => {
-    try {
-        const query = { _id: new ObjectId(req.params.id) };
-        const updates = {
-            $set: {
-                active: false
-            }
-        };
-
-        let collection = await db.collection("users");
-        let result = await collection.updateOne(query, updates);
-        let response = `User with id:${req.params.id} was deactivated!`
-        res.send(response).status(200);
-    } catch (e) {
-        console.log(e)
-        res.status(400).send("An error occured! Check logs!")
-    }
-});
 
 export default router;
