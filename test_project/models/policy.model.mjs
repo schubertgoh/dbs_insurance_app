@@ -14,14 +14,14 @@ export default Item
 */
 
 const policySchema = new mongoose.Schema({
-    insuranceID:         Number,
-    employeeID:          Number,
-    instuanceType:       String,
-    policyStartDate:     String,
-    policyTerm:          String,
-    policyEndDate:       String,
-    claimLimit:          Decimal128,
-    remainingClaimLimit: Decimal128
+    InsuranceID:         Number,
+    EmployeeID:          Number,
+    InsuranceType:       String,
+    PolicyStartDate:     String,
+    PolicyTerm:          String,
+    PolicyEndDate:       String,
+    ClaimLimit:          Number,
+    RemainingClaimLimit: Number
 });
 
 const Policy = mongoose.model('Policy', policySchema)
